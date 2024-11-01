@@ -566,3 +566,16 @@ svg.feather {
     padding-right: 100%;
   }
 }
+
+
+.bg-dark-blur {
+  background-color: rgba(11, 12, 12, 0.1) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
