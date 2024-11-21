@@ -5758,12 +5758,7 @@ a.badge-dark.focus {
   margin-bottom: 2rem;
   background-color: #282a38;
   border-radius: 6px;
-  min-height: 100vh; /* Asegura que el jumbotron ocupe al menos toda la altura de la ventana */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
-
 @media (min-width: 576px) {
   .jumbotron {
     padding: 4rem 2rem;
