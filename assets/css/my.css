@@ -569,7 +569,7 @@ svg.feather {
 
 
 .bg-dark-blur {
-  background-color: rgba(11, 12, 12, 0.1) !important;
+  background-color: rgba(128, 128, 128, 0.1) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -582,7 +582,7 @@ svg.feather {
   width: calc(100% - 40px);
   max-width: 1200px;
   padding: 15px 30px;
-  background-color: rgba(11, 12, 12, 0.1) !important;
+  background-color: rgba(128, 128, 128, 0.1) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: flex;
@@ -640,7 +640,7 @@ svg.feather {
       left: 0;
       width: 100%;
       padding: 15px;
-      background-color: rgba(11, 12, 12, 0.1) !important;
+      background-color: rgba(128, 128, 128, 0.1) !important;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
