@@ -93,7 +93,7 @@ setTimeout(function () {
             $(".preloader").fadeOut('slow');
             enableScroll();
              $('body').removeClass('loading');
-        }, 2500)
+        }, 1500)
     });
 
 };
@@ -117,6 +117,5 @@ premyfucn();
   window.addEventListener('load', () => {
     aos_init();
   });
-
 
 
