@@ -37,7 +37,8 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
-    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
   </head>
   <body class="loading">
 
@@ -46,18 +47,19 @@
   <!- End: Preloader -->
 
   <header class="header">
-    <a href="#" class="logo">Logo</a>
+    <a href="#" class="logo">
+        <img src="https://i.imgur.com/OirvPm7.png" alt="Logo" class="logo-image">
+    </a>
     <i class='bx bx-menu' id="menu-icon"></i>
     <nav class="navbar">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Portfolio</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+        <a href="#">Inicio</a>
+        <a href="#">Acerca</a>
+        <a href="#">Portafolio</a>
+        <a href="#">Servicios</a>
+        <a href="#">Contacto</a>
     </nav>
 </header>
     
-  
 
   
 
@@ -502,6 +504,19 @@ So far I have started working with <a href="#" class="link link--ersa"><span>GIT
   })(document, 'script');
 </script>
 <!-- End of voiceflow Embed Code -->
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuIcon = document.querySelector('#menu-icon');
+    const navbar = document.querySelector('.navbar');
+
+    menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
+    });
+});
+</script>
 
   </body>
 </html>
