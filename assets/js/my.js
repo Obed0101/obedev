@@ -119,3 +119,40 @@ premyfucn();
   });
 
 
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuIcon = document.querySelector('#menu-icon');
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.navbar a');
+
+    menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Cerrar el menú móvil si está abierto
+            menuIcon.classList.remove('bx-x');
+            navbar.classList.remove('active');
+
+            // Obtener el id del div objetivo
+            const targetId = this.getAttribute('href').substring(1);
+            const targetDiv = document.getElementById(targetId);
+
+            if (targetDiv) {
+                // Calcular la posición de desplazamiento
+                const headerOffset = 80; // Ajusta este valor según la altura de tu header
+                const elementPosition = targetDiv.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                // Realizar el desplazamiento suave
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});

@@ -153,7 +153,7 @@
 }
 
 .pad-top-section-home {
-  padding-top: 4%;
+  padding-top: 3%;
 }
 
 .pd-top-navbar {
@@ -580,7 +580,7 @@ svg.feather {
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
-    max-width: 1200px;
+    max-width: 1150px; /*era 1200px*/
     padding: 10px 30px;
     background-color: rgba(32, 32, 32, 0.4) !important;
     backdrop-filter: blur(12px);
