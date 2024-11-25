@@ -5193,10 +5193,9 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #32334a;
   background-clip: border-box;
-  border: 1px solid #151623;
-  border-radius: 6px;
+  border: 2px solid #151623;
+  border-radius: 16px;
 }
 .card > hr {
   margin-right: 0;
