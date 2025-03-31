@@ -1,0 +1,370 @@
+/* =================== Featured Projects Styles =================== */
+
+/* Common styles for all project designs */
+.featured-projects-section {
+  padding: 4rem 0;
+}
+
+.featured-projects-heading {
+  margin-bottom: 3rem;
+}
+
+.featured-projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+/* Tags styling */
+.project-tag {
+  display: inline-block;
+  background-color: rgba(113, 76, 223, 0.1);
+  color: var(--primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.project-tag:hover {
+  background-color: rgba(113, 76, 223, 0.2);
+  transform: translateY(-2px);
+}
+
+/* =================== Design 1: Minimal with Side Image =================== */
+.project-minimal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.project-minimal-content {
+  order: 1;
+}
+
+.project-minimal-image {
+  order: 2;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.project-minimal:hover .project-minimal-image {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px -15px rgba(113, 76, 223, 0.5);
+}
+
+.project-minimal-image img {
+  width: 100%;
+  height: auto;
+  transition: all 0.5s ease;
+}
+
+.project-minimal:hover .project-minimal-image img {
+  transform: scale(1.05);
+}
+
+.project-minimal-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.project-minimal-title::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  bottom: -10px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.project-minimal:hover .project-minimal-title::after {
+  transform: scaleX(1);
+}
+
+.project-minimal-description {
+  margin-bottom: 2rem;
+  color: #e4e2ff;
+}
+
+.project-minimal-tags {
+  margin-bottom: 2rem;
+}
+
+.project-minimal-links a {
+  margin-right: 1.5rem;
+  font-size: 1.2rem;
+  color: #e4e2ff;
+  transition: all 0.3s ease;
+}
+
+.project-minimal-links a {
+  margin-right: 1.5rem;
+  font-size: 1.2rem;
+  color: #e4e2ff;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 5px 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.project-minimal-links a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(113, 76, 223, 0.2);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.project-minimal-links a:hover {
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.project-minimal-links a:hover::before {
+  height: 100%;
+}
+
+/* Alternate layout for even projects */
+.project-minimal:nth-child(even) .project-minimal-content {
+  order: 2;
+}
+
+.project-minimal:nth-child(even) .project-minimal-image {
+  order: 1;
+}
+
+/* =================== Design 2: Card with Hover Image Reveal =================== */
+.project-card {
+  position: relative;
+  background-color: rgba(18, 18, 18, 0.5);
+  border-radius: 8px;
+  padding: 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+}
+
+.project-card-content {
+  position: relative;
+  z-index: 2;
+  transition: all 0.5s ease;
+}
+
+.project-card-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.project-card-description {
+  margin-bottom: 1.5rem;
+  color: #e4e2ff;
+}
+
+.project-card-tags {
+  margin-bottom: 1.5rem;
+}
+
+.project-card-image {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.project-card:hover .project-card-image {
+  left: 0;
+  opacity: 0.15;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -20px rgba(113, 76, 223, 0.5);
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(113, 76, 223, 0.1) 0%,
+    transparent 100%
+  );
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+.project-card:hover::after {
+  width: 100%;
+}
+
+/* =================== Design 3: Interactive Hybrid =================== */
+.project-hybrid {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: rgba(18, 18, 18, 0.3);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-hybrid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.project-hybrid-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.project-hybrid-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.project-hybrid:hover .project-hybrid-icon {
+  transform: rotate(360deg);
+}
+
+.project-hybrid-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  transition: all 0.5s ease;
+}
+
+.project-hybrid-description {
+  color: #e4e2ff;
+}
+
+.project-hybrid-preview {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.project-hybrid:hover .project-hybrid-preview {
+  height: 200px;
+  opacity: 1;
+}
+
+.project-hybrid-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 4px;
+}
+
+.project-hybrid-tags {
+  margin-top: 1rem;
+}
+
+.project-hybrid-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.project-hybrid-links a {
+  color: #e4e2ff;
+  transition: all 0.3s ease;
+}
+
+.project-hybrid-links a:hover {
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.project-hybrid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background-color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.project-hybrid:hover::before {
+  height: 100%;
+}
+
+/* =================== Solar System Animation =================== */
+#solar-system-container {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#solar-system-container:hover {
+  box-shadow: 0 0 30px rgba(113, 76, 223, 0.3);
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .project-minimal {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .project-minimal-content,
+  .project-minimal-image,
+  .project-minimal:nth-child(even) .project-minimal-content,
+  .project-minimal:nth-child(even) .project-minimal-image {
+    order: 0;
+  }
+
+  .project-card-image {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-projects-container {
+    gap: 4rem;
+  }
+
+  .project-hybrid-preview {
+    height: 150px;
+  }
+}
