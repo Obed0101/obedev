@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Save values on change
   complexityInput.addEventListener("change", function () {
     localStorage.setItem("complexity", this.value)
+    updateDifficultyResult(this.value)
     calculateEstimates()
   })
 
@@ -143,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   urgencyToggle.addEventListener("change", function () {
     localStorage.setItem("urgency", this.checked)
+    updateUrgentIndicator(this.checked)
     calculateEstimates()
   })
 
@@ -197,12 +199,14 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   // Calculate estimates
+  // Modificar la función calculateEstimates para reducir los precios
   function calculateEstimates() {
     const selectedProject = document.querySelector(".project-type-item.selected")
     if (!selectedProject) return
 
+    // Reducir los costos base a aproximadamente la mitad
     const baseHours = Number.parseInt(selectedProject.dataset.baseHours)
-    const baseCost = Number.parseInt(selectedProject.dataset.baseCost)
+    const baseCost = Number.parseInt(selectedProject.dataset.baseCost) * 0.5 // Reducir a la mitad
     const complexity = Number.parseInt(complexityInput.value)
     const techStack = techStackSelect.value
     const databaseType = databaseTypeSelect.value
@@ -217,61 +221,97 @@ document.addEventListener("DOMContentLoaded", () => {
       if (checkbox.checked) {
         featureCount++
 
-        // Special multipliers for certain features
-        if (checkbox.id === "feature-payment") {
-          featureMultiplier += 0.2 // Payment integration adds 20%
-        }
+        // Different price multipliers based on feature complexity
+        switch (checkbox.id) {
+          // High complexity features (expensive)
+          case "feature-chat":
+            featureMultiplier += 0.25 // Chat/Messaging is complex and expensive
+            break
+          case "feature-realtime":
+            featureMultiplier += 0.2 // Real-time data is complex
+            break
+          case "feature-payment":
+            featureMultiplier += 0.18 // Payment integration is complex
+            break
 
-        if (checkbox.id === "feature-multilingual") {
-          featureMultiplier += 0.15 // Multilingual adds 15%
-        }
+          // Medium complexity features
+          case "feature-maps":
+            featureMultiplier += 0.15 // Maps/Geolocation
+            break
+          case "feature-auth":
+            featureMultiplier += 0.15 // Authentication
+            break
+          case "feature-notifications":
+            featureMultiplier += 0.12 // Push notifications
+            break
+          case "feature-multilingual":
+            featureMultiplier += 0.12 // Multilingual support
+            break
+          case "feature-cms":
+            featureMultiplier += 0.1 // CMS/Admin panel
+            break
 
-        if (checkbox.id === "feature-maintenance") {
-          featureMultiplier += 0.3 // Maintenance adds 30%
-        }
-
-        if (checkbox.id === "feature-realtime") {
-          featureMultiplier += 0.25 // Real-time data adds 25%
-        }
-
-        if (checkbox.id === "feature-auth") {
-          featureMultiplier += 0.15 // Authentication adds 15%
+          // Lower complexity features
+          case "feature-offline":
+            featureMultiplier += 0.08 // Offline mode
+            break
+          case "feature-pwa":
+            featureMultiplier += 0.08 // PWA
+            break
+          case "feature-social":
+            featureMultiplier += 0.07 // Social media integration
+            break
+          case "feature-api":
+            featureMultiplier += 0.07 // API integration
+            break
+          case "feature-analytics":
+            featureMultiplier += 0.06 // Analytics
+            break
+          case "feature-seo":
+            featureMultiplier += 0.05 // SEO optimization
+            break
+          case "feature-animations":
+            featureMultiplier += 0.05 // Animations
+            break
+          default:
+            featureMultiplier += 0.05 // Default increase for other features
         }
       }
     })
 
-    // Tech stack multiplier
+    // Reducir los multiplicadores de stack tecnológico
     let techStackMultiplier = 1
-    if (techStack === "react" || techStack === "vue") techStackMultiplier = 1.1
-    if (techStack === "angular") techStackMultiplier = 1.2
-    if (techStack === "flutter" || techStack === "react-native") techStackMultiplier = 1.3
-    if (techStack === "custom") techStackMultiplier = 1.4
+    if (techStack === "react" || techStack === "vue") techStackMultiplier = 1.05 // Reducido de 1.1
+    if (techStack === "angular") techStackMultiplier = 1.1 // Reducido de 1.2
+    if (techStack === "flutter" || techStack === "react-native") techStackMultiplier = 1.15 // Reducido de 1.3
+    if (techStack === "custom") techStackMultiplier = 1.2 // Reducido de 1.4
 
-    // Database multiplier
+    // Reducir los multiplicadores de base de datos
     let databaseMultiplier = 1
-    if (databaseType === "supabase") databaseMultiplier = 1.1
-    if (databaseType === "mongodb") databaseMultiplier = 1.15
-    if (databaseType === "graph" || databaseType === "time-series") databaseMultiplier = 1.25
-    if (databaseType === "custom") databaseMultiplier = 1.3
+    if (databaseType === "supabase") databaseMultiplier = 1.05 // Reducido de 1.1
+    if (databaseType === "mongodb") databaseMultiplier = 1.08 // Reducido de 1.15
+    if (databaseType === "graph" || databaseType === "time-series") databaseMultiplier = 1.12 // Reducido de 1.25
+    if (databaseType === "custom") databaseMultiplier = 1.15 // Reducido de 1.3
 
-    // Deployment multiplier based on hosting plan
+    // Reducir los multiplicadores de despliegue
     let deploymentMultiplier = 1
     if (deploymentType === "starter") deploymentMultiplier = 1.0
-    if (deploymentType === "pro") deploymentMultiplier = 1.1
-    if (deploymentType === "business") deploymentMultiplier = 1.2
-    if (deploymentType === "enterprise") deploymentMultiplier = 1.3
+    if (deploymentType === "pro") deploymentMultiplier = 1.05 // Reducido de 1.1
+    if (deploymentType === "business") deploymentMultiplier = 1.1 // Reducido de 1.2
+    if (deploymentType === "enterprise") deploymentMultiplier = 1.15 // Reducido de 1.3
 
-    // Calculate time estimate
-    let timeMultiplier = 1 + (complexity - 3) * 0.2 // Complexity adjustment
-    if (isUrgent) timeMultiplier *= 0.7 // Urgent projects take less time but cost more
+    // Calcular tiempo estimado (mantener igual)
+    let timeMultiplier = 1 + (complexity - 3) * 0.2
+    if (isUrgent) timeMultiplier *= 0.7
 
     const estimatedHours = Math.round(baseHours * timeMultiplier * (1 + featureCount * 0.1))
-    const estimatedWeeks = Math.ceil(estimatedHours / 40) // 40 hours per week
+    const estimatedWeeks = Math.ceil(estimatedHours / 40)
 
-    // Calculate cost estimate
-    let costMultiplier = 1 + (complexity - 3) * 0.15 // Complexity adjustment
-    if (isUrgent) costMultiplier *= 1.25 // 25% premium for urgent projects
+    // Reducir el multiplicador de complejidad para el costo
+    let costMultiplier = 1 + (complexity - 3) * 0.1 // Reducido de 0.15
+    if (isUrgent) costMultiplier *= 1.2 // Reducido de 1.25
 
+    // Calcular el costo estimado con los nuevos multiplicadores
     const estimatedCost = Math.round(
       baseCost * costMultiplier * featureMultiplier * techStackMultiplier * databaseMultiplier * deploymentMultiplier,
     )
@@ -281,20 +321,13 @@ document.addEventListener("DOMContentLoaded", () => {
       max: Math.round(estimatedCost * 1.1),
     }
 
-    // Determine team size based on project complexity and features
-    let teamSize = ""
-    if (complexity >= 4 || featureCount >= 5) {
-      teamSize = "1 Desarrollador Senior, 1 Desarrollador Junior, 1 Diseñador UI/UX"
-    } else if (complexity >= 3 || featureCount >= 3) {
-      teamSize = "1 Desarrollador Senior, 1 Diseñador UI/UX"
-    } else {
-      teamSize = "1 Desarrollador, 1 Diseñador"
-    }
-
-    // Update result displays with animation
+    // Actualizar resultados con animación
     animateValue("time-result", `${estimatedWeeks}-${estimatedWeeks + 2} semanas`)
     animateValue("cost-result", `$${costRange.min.toLocaleString()} - $${costRange.max.toLocaleString()}`)
-    animateValue("team-result", teamSize)
+
+    // Actualizar dificultad y urgencia
+    updateDifficultyResult(complexity)
+    updateUrgentIndicator(isUrgent)
   }
 
   function animateValue(elementId, newValue) {
@@ -310,6 +343,94 @@ document.addEventListener("DOMContentLoaded", () => {
       element.style.transform = "translateY(0)"
     }, 300)
   }
+
+  // Actualizar la tecnología principal basada en el stack seleccionado
+  function updateTechResult() {
+    const techStack = document.getElementById("tech-stack").value
+    let techResult = ""
+
+    switch (techStack) {
+      case "react":
+        techResult = "React + Node.js"
+        break
+      case "vue":
+        techResult = "Vue.js + Express"
+        break
+      case "angular":
+        techResult = "Angular + TypeScript"
+        break
+      case "node":
+        techResult = "Node.js + Express"
+        break
+      case "python":
+        techResult = "Python + Django"
+        break
+      case "php":
+        techResult = "PHP + Laravel"
+        break
+      case "dotnet":
+        techResult = ".NET Core + C#"
+        break
+      case "flutter":
+        techResult = "Flutter + Dart"
+        break
+      case "react-native":
+        techResult = "React Native + Firebase"
+        break
+      case "custom":
+        techResult = "Tecnología Personalizada"
+        break
+      default:
+        techResult = "React + Node.js"
+    }
+
+    document.getElementById("tech-result").textContent = techResult
+  }
+
+  // Actualizar la tecnología cuando cambia el stack
+  document.getElementById("tech-stack").addEventListener("change", updateTechResult)
+
+  // Actualizar la dificultad basada en el valor de complejidad
+  function updateDifficultyResult(complexity) {
+    let difficultyText = ""
+
+    switch (Number.parseInt(complexity)) {
+      case 1:
+        difficultyText = "Muy Baja"
+        break
+      case 2:
+        difficultyText = "Baja"
+        break
+      case 3:
+        difficultyText = "Media"
+        break
+      case 4:
+        difficultyText = "Alta"
+        break
+      case 5:
+        difficultyText = "Muy Alta"
+        break
+      default:
+        difficultyText = "Media"
+    }
+
+    document.getElementById("difficulty-result").textContent = difficultyText
+  }
+
+  // Actualizar el indicador de entrega urgente
+  function updateUrgentIndicator(isUrgent) {
+    const urgentIndicator = document.getElementById("urgent-indicator")
+    if (urgentIndicator) {
+      urgentIndicator.style.display = isUrgent ? "flex" : "none"
+    }
+  }
+
+  // Inicializar dificultad y urgencia
+  updateDifficultyResult(complexityInput.value)
+  updateUrgentIndicator(urgencyToggle.checked)
+
+  // Llamar a la función inicialmente
+  updateTechResult()
 
   // Initial calculation
   calculateEstimates()

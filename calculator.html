@@ -43,6 +43,10 @@
   
   <!-- HTML2PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!-- html2canvas y jsPDF para generación de PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body class="loading" style="background-color: #0b0c15;">
   <!-- Start: Preloader-->
@@ -139,84 +143,84 @@
                 <section class="card project-type-card wel_item">
                   <h2 class="card-title">Tipo de Proyecto</h2>
                   <div class="project-types">
-                    <div class="project-type-item" data-type="website" data-base-hours="30" data-base-cost="1500">
+                    <div class="project-type-item" data-type="website" data-base-hours="30" data-base-cost="750">
                       <div class="project-icon"><i class="fas fa-globe"></i></div>
                       <div class="project-info">
                         <h3>Sitio Web</h3>
                         <p>Informativo o corporativo</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="ecommerce" data-base-hours="80" data-base-cost="4000">
+                    <div class="project-type-item" data-type="ecommerce" data-base-hours="80" data-base-cost="2000">
                       <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
                       <div class="project-info">
                         <h3>E-commerce</h3>
                         <p>Tienda online completa</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="webapp" data-base-hours="100" data-base-cost="5000">
+                    <div class="project-type-item" data-type="webapp" data-base-hours="100" data-base-cost="2500">
                       <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
                       <div class="project-info">
                         <h3>Aplicación Web</h3>
                         <p>Con autenticación y base de datos</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="dashboard" data-base-hours="60" data-base-cost="3000">
+                    <div class="project-type-item" data-type="dashboard" data-base-hours="60" data-base-cost="1500">
                       <div class="project-icon"><i class="fas fa-chart-line"></i></div>
                       <div class="project-info">
                         <h3>Dashboard</h3>
                         <p>Visualización de datos</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="mobile" data-base-hours="120" data-base-cost="6000">
+                    <div class="project-type-item" data-type="mobile" data-base-hours="120" data-base-cost="3000">
                       <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
                       <div class="project-info">
                         <h3>App Móvil</h3>
                         <p>Híbrida (iOS/Android)</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="iot" data-base-hours="80" data-base-cost="4500">
+                    <div class="project-type-item" data-type="iot" data-base-hours="80" data-base-cost="2250">
                       <div class="project-icon"><i class="fas fa-microchip"></i></div>
                       <div class="project-info">
                         <h3>IoT</h3>
                         <p>Dispositivos conectados</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="ai" data-base-hours="100" data-base-cost="6000">
+                    <div class="project-type-item" data-type="ai" data-base-hours="100" data-base-cost="3000">
                       <div class="project-icon"><i class="fas fa-brain"></i></div>
                       <div class="project-info">
                         <h3>Inteligencia Artificial</h3>
                         <p>Modelos y aplicaciones IA</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="monorepo" data-base-hours="70" data-base-cost="3500">
-                      <div class="project-icon"><i class="fas fa-code-branch"></i></div>
+                    <div class="project-type-item" data-type="cms" data-base-hours="70" data-base-cost="1750">
+                      <div class="project-icon"><i class="fas fa-newspaper"></i></div>
                       <div class="project-info">
-                        <h3>Monorepo</h3>
-                        <p>Gestión de proyectos Node.js</p>
+                        <h3>CMS Personalizado</h3>
+                        <p>Sistema de gestión de contenidos</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="api" data-base-hours="40" data-base-cost="2000">
+                    <div class="project-type-item" data-type="api" data-base-hours="40" data-base-cost="1000">
                       <div class="project-icon"><i class="fas fa-plug"></i></div>
                       <div class="project-info">
                         <h3>API/Integración</h3>
                         <p>Conexión entre sistemas</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="firmware" data-base-hours="90" data-base-cost="4800">
+                    <div class="project-type-item" data-type="firmware" data-base-hours="90" data-base-cost="2400">
                       <div class="project-icon"><i class="fas fa-microchip"></i></div>
                       <div class="project-info">
                         <h3>Firmware</h3>
                         <p>Programación de dispositivos</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="cli" data-base-hours="50" data-base-cost="2500">
+                    <div class="project-type-item" data-type="cli" data-base-hours="50" data-base-cost="1250">
                       <div class="project-icon"><i class="fas fa-terminal"></i></div>
                       <div class="project-info">
                         <h3>Herramienta CLI</h3>
                         <p>Aplicación de línea de comandos</p>
                       </div>
                     </div>
-                    <div class="project-type-item" data-type="custom" data-base-hours="100" data-base-cost="5000">
+                    <div class="project-type-item" data-type="custom" data-base-hours="100" data-base-cost="2500">
                       <div class="project-icon"><i class="fas fa-lightbulb"></i></div>
                       <div class="project-info">
                         <h3>Custom</h3>
@@ -311,7 +315,7 @@
                           <div class="plan-price">
                             <span class="price-value">US$ 6.99</span>
                             <span class="price-period">/mes</span>
-                          </div>
+                            </div>
                           <div class="plan-term">Por contrato de 24 meses</div>
                           <ul class="plan-features">
                             <li><i class="fas fa-microchip"></i> 2 vCPU cores</li>
@@ -403,8 +407,8 @@
                   <h2 class="card-title">Características Adicionales</h2>
                   <div class="features-list">
                     <div class="feature-item">
-                      <input type="checkbox" id="feature-responsive" class="feature-checkbox">
-                      <label for="feature-responsive">Diseño Responsive</label>
+                      <input type="checkbox" id="feature-animations" class="feature-checkbox">
+                      <label for="feature-animations">Animaciones Avanzadas</label>
                     </div>
                     <div class="feature-item">
                       <input type="checkbox" id="feature-cms" class="feature-checkbox">
@@ -489,10 +493,10 @@
                     </div>
                     
                     <div class="result-item">
-                      <div class="result-icon"><i class="fas fa-user-tie"></i></div>
+                      <div class="result-icon"><i class="fas fa-gauge-high"></i></div>
                       <div class="result-info">
-                        <h3>Desarrollador Asignado</h3>
-                        <p id="team-result">Obed González</p>
+                        <h3>Dificultad</h3>
+                        <p id="difficulty-result">Media</p>
                       </div>
                     </div>
                     
@@ -503,6 +507,11 @@
                         <p id="cost-result">$5,000 - $7,000</p>
                       </div>
                     </div>
+                  </div>
+
+                  <div id="urgent-indicator" class="urgent-indicator" style="display: none;">
+                    <i class="fas fa-bolt"></i>
+                    <span>Entrega Urgente</span>
                   </div>
 
                   <!-- Project Summary Section -->
@@ -549,108 +558,42 @@
                   <div class="hosting-benefits">
                     <h3 class="benefits-title"><i class="fas fa-server"></i> Beneficios Incluidos en su Plan</h3>
                     
-                    <div class="benefits-tabs">
-                      <button class="benefit-tab active" data-tab="infrastructure">Infraestructura</button>
-                      <button class="benefit-tab" data-tab="features">Funciones Avanzadas</button>
-                      <button class="benefit-tab" data-tab="support">Soporte</button>
-                    </div>
-                    
-                    <div class="benefits-content active" id="infrastructure-content">
-                      <div class="benefit-item">
-                        <i class="fas fa-globe"></i>
-                        <div class="benefit-info">
-                          <h4>Data centers worldwide</h4>
-                          <p>Elija la ubicación más cercana a su audiencia para minimizar la latencia.</p>
+                    <div class="benefits-compact">
+                      <div class="benefits-row">
+                        <div class="benefit-category">
+                          <div class="category-header">
+                            <i class="fas fa-server"></i>
+                            <span>Infraestructura</span>
+                          </div>
+                          <div class="category-items">
+                            <span><i class="fas fa-check-circle"></i> Data centers worldwide</span>
+                            <span><i class="fas fa-check-circle"></i> Linux OS preinstalado</span>
+                            <span><i class="fas fa-check-circle"></i> Infraestructura de Alto Rendimiento</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fab fa-linux"></i>
-                        <div class="benefit-info">
-                          <h4>Linux OS preinstalado</h4>
-                          <p>Soporte para las distribuciones más populares, configurado y listo para usar.</p>
+                        
+                        <div class="benefit-category">
+                          <div class="category-header">
+                            <i class="fas fa-cogs"></i>
+                            <span>Funciones</span>
+                          </div>
+                          <div class="category-items">
+                            <span><i class="fas fa-check-circle"></i> Snapshots en tiempo real</span>
+                            <span><i class="fas fa-check-circle"></i> Backups automáticos</span>
+                            <span><i class="fas fa-check-circle"></i> Firewall y DDoS protection</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-network-wired"></i>
-                        <div class="benefit-info">
-                          <h4>Infraestructura de Alto Rendimiento</h4>
-                          <p>Servidores HPE y DELL con procesadores AMD EPYC y conexión de 300 Mb/s.</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div class="benefits-content" id="features-content">
-                      <div class="benefit-item">
-                        <i class="fas fa-camera"></i>
-                        <div class="benefit-info">
-                          <h4>Instant real‑time snapshots</h4>
-                          <p>Capture el estado de su servidor en cualquier momento y recupérelo al instante.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-database"></i>
-                        <div class="benefit-info">
-                          <h4>Backups automáticos semanales</h4>
-                          <p>Copias de seguridad gestionadas por Hostinger, para restaurar en minutos ante cualquier imprevisto.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-robot"></i>
-                        <div class="benefit-info">
-                          <h4>AI Assistant "Kodee"</h4>
-                          <p>Asesor virtual disponible 24/7 para ayudarle con configuraciones, comandos y buenas prácticas.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-terminal"></i>
-                        <div class="benefit-info">
-                          <h4>Browser terminal</h4>
-                          <p>Administre archivos y ejecute comandos directamente desde el navegador, sin necesidad de clientes externos.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                        <div class="benefit-info">
-                          <h4>Escalabilidad en un clic</h4>
-                          <p>Si su proyecto crece, aumente CPU, RAM o almacenamiento con solo unos clics desde el panel.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <div class="benefit-info">
-                          <h4>Firewall y DDoS protection</h4>
-                          <p>Seguridad avanzada con filtrado de tráfico y reglas personalizables para mantener su servidor a salvo.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-code"></i>
-                        <div class="benefit-info">
-                          <h4>API pública VPS</h4>
-                          <p>Automatice tareas de backup, despliegue o monitorización mediante la API REST de Hostinger.</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div class="benefits-content" id="support-content">
-                      <div class="benefit-item">
-                        <i class="fas fa-headset"></i>
-                        <div class="benefit-info">
-                          <h4>Soporte 24/7</h4>
-                          <p>Equipo de expertos disponible en todo momento para resolver cualquier incidencia.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-undo"></i>
-                        <div class="benefit-info">
-                          <h4>Garantía de satisfacción</h4>
-                          <p>30 días de reembolso si no está completamente satisfecho con nuestro servicio.</p>
-                        </div>
-                      </div>
-                      <div class="benefit-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div class="benefit-info">
-                          <h4>Recursos de aprendizaje</h4>
-                          <p>Acceso a tutoriales, guías y documentación para sacar el máximo provecho a su servidor.</p>
+                        
+                        <div class="benefit-category">
+                          <div class="category-header">
+                            <i class="fas fa-headset"></i>
+                            <span>Soporte</span>
+                          </div>
+                          <div class="category-items">
+                            <span><i class="fas fa-check-circle"></i> Soporte 24/7</span>
+                            <span><i class="fas fa-check-circle"></i> Garantía de satisfacción</span>
+                            <span><i class="fas fa-check-circle"></i> Recursos de aprendizaje</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -660,10 +603,10 @@
                   <div class="action-buttons">
                     <button id="generate-quote-pdf" class="action-button primary">
                       <i class="fas fa-file-pdf"></i>
-                      <span>Descargar Pre-Cotización</span>
+                      <span>Descargar PDF</span>
                     </button>
                     <button id="send-to-whatsapp" class="action-button secondary">
-                      <i class="fab fa-whatsapp"></i>
+                      <i class="fab fa-whatsapp webkit-white"></i>
                       <span>Recibir por WhatsApp</span>
                     </button>
                   </div>
@@ -802,7 +745,6 @@
   <!-- Calculator Scripts -->
   <script src="assets/js/calculator.js"></script>
   <script src="assets/js/gemini-assistant.js"></script>
-  <script src="assets/js/pdf-generator.js"></script>
 
   <!-- Mobile Menu Script -->
   <script>
@@ -814,7 +756,9 @@
         menuIcon.classList.toggle("bx-x");
         navbar.classList.toggle("active");
       });
-    </script>
-  </body>
+    });
+  </script>
   <script src="assets/js/results-handler.js"></script>
+  <script src="assets/js/html2canvas-pdf.js"></script>
+</body>
 </html>
