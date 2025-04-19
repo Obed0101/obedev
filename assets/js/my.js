@@ -2,12 +2,36 @@ const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cur-sor-ef");
 
 const textArray = [
-  "bots.",
-  "NoSQL databases.",
-  "web interfaces.",
+  "Web Pages.",
+  "E-commerce.",
+  "Scripts.",
+  "AI Prompts.",
+  "Bots.",
+  "NoSQL DBs.",
   "RPA.",
-  "NodeJS apis.",
+  "Backend APIs.",
+  "IoT Solutions.",
+  "AI Apps.",
+  "Dashboards.",
+  "C++ Firmware.",
+  "Dev Tools.",
+  "AR Apps.",
+  "CLI Interfaces.",    // Command-line tools
+  "Cloud Services.",    // Deployment, integration (Render)
+  "Automation Scripts.",// PowerShell, Bash/Zsh
+  "Mobile Apps.",       // React Native / AR
+  "Route Optimization.",// FlexiRoute specific project
+  "Custom Software.",   // Custom solutions
+  "UI/UX Design.",      // UI/UX design services
+  "Data Analysis.",     // Data analysis and visualization
+  "Machine Learning.",  // Machine learning projects
+  "Web Scraping.",      // Web scraping tools
+  "Networking.",        // Networking solutions
+  "Security.",          // Security audits and penetration testing
+  "Data Viz.",          // General data visualization tasks
+  "System Utilities.",  // SUDA, SnapTap idea
 ];
+
 const typingDelay = 100;
 const erasingDelay = 75;
 const newTextDelay = 1000; // Delay between current and next text

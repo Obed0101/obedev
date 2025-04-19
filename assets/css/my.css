@@ -312,7 +312,7 @@
 
 .wel_item p {
   font-size: 16px;
-  color: #777777;
+  /*color: #777777;*/
   margin-bottom: 0px;
 }
 
@@ -376,7 +376,7 @@
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .card-proyect-top folder {
@@ -775,16 +775,33 @@ svg.feather {
     left: 0;
     width: 100%;
     padding: 10px;
-
-    backdrop-filter: blur(12px);
+    background-color: rgba(11, 12, 21, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px);
     border-radius: 16px;
     border: 1px solid #714cdf;
-    display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    z-index: 200;
   }
 
   .navbar.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
     display: block;
+    background-color: rgba(11, 12, 21, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px);
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .navbar a {
@@ -910,10 +927,6 @@ svg.feather {
 #testimonials {
   padding-top: 80px; /* Reduced from 100px to move section up */
   padding-bottom: 200px; /* Increased bottom padding for more space after Client Feedback */
-}
-
-#testimonials h3.mgb-h4-op {
-  margin-bottom: 60px; /* Increased spacing between title and cards */
 }
 
 #testimonials .card {
@@ -1138,4 +1151,9 @@ svg.feather {
   background: var(--primary);
   box-shadow: 0 0 10px var(--primary-glow);
   transform: scaleX(1) rotate(-2deg);
+}
+
+.no-space{
+  padding: 0px !important;
+  margin:  0px !important;
 }

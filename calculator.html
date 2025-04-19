@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" type="image/png" href="https://i.imgur.com/8BQucp1.png" />
+  <title>ObeDev - AI Calculator</title>
+  <meta property="og:image" content="https://i.imgur.com/8BQucp1.png" />
+  <meta property="og:type" content="Profile" />
+  <meta name="keywords" content="obedev, calculadora, proyectos" />
+  <meta name="description" content="Calculadora de proyectos para estimar tiempo y costos para tu próximo proyecto de desarrollo" />
+  <meta name="subject" content="Service" />
+  <meta name="language" content="ES" />
+  <meta name="topic" content="Project Calculator" />
+  <meta name="Classification" content="Tool" />
+  <meta name="author" content="Obed" />
+  <meta name="designer" content="Obed" />
+  <meta name="copyright" content="© 2025 Obedev Inc. All rights reserved" />
+  <meta name="owner" content="Obed" />
+  <meta name="directory" content="ObeDev" />
+  <meta name="category" content="Tool" />
+  <meta name="theme-color" content="#714cdf" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Hack:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <!-- ObeDev Portfolio CSS -->
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap4-neon-glow.min.css" />
+  <link rel="stylesheet" href="assets/css/hover.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="assets/css/my.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/projects.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  
+  <!-- Calculator CSS -->
+  <link rel="stylesheet" href="assets/css/calculator-styles.css" />
+  
+  <!-- HTML2PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body class="loading" style="background-color: #0b0c15;">
+  <!-- Start: Preloader-->
+  <div class="preloader">
+    <img class="logo-ld-gif hvr-grow" src="https://i.imgur.com/cuBwWHq.gif" alt="logo-nav" />
+  </div>
+  <!-- End: Preloader -->
+
+  <header class="header">
+    <a href="#" class="logo">
+      <img src="https://i.imgur.com/OirvPm7.png" alt="Logo" class="logo-image" />
+    </a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#testimonials">Testimonials</a>
+      <a href="#">AI Calculator</a>
+      <a href="#">Blog</a>
+      <a href="https://discordapp.com/users/1149424852986511441">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="jumbotron bg-transparent mb-0 radius-0 pad-home-cont-imp">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" data-aos="fade-up">
+          <h4 class="display-2 bold-txt-ob text-center pt-5 pb-2">
+            Calculadora de Proyectos
+          </h4>
+          
+          <div class="text-center mb-5">
+            <p>
+              <span>Estima tiempo y costos para tu próximo proyecto de desarrollo</span>
+            </p>
+          </div>
+
+          <!-- App Container with updated classes -->
+          <div class="app-container">
+            <!-- Calculator Panel (Full Width) -->
+            <div class="calculator-panel">
+              <!-- Gemini AI Input -->
+              <section class="card gemini-card wel_item">
+                <div class="gemini-header">
+                  <div class="gemini-title">
+                    <div class="gemini-icon">
+                      <i class="fas fa-robot"></i>
+                    </div>
+                    <h2 class="card-title no-space">Asistente de Proyectos IA</h2>
+                  </div>
+                  <button id="reset-chat" class="reset-chat-btn" title="Reiniciar conversación">
+                    <i class="fas fa-redo-alt"></i>
+                  </button>
+                </div>
+                
+                <!-- Chat Messages Container -->
+                <div class="chat-container">
+                  <div id="chat-messages" class="chat-messages">
+                    <!-- Initial bot message -->
+                    <div class="message bot-message">
+                      <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                      </div>
+                      <div class="message-content">
+                        <p>¡Hola! Soy tu asistente de proyectos. Describe tu proyecto y te ayudaré a configurar la calculadora automáticamente.</p>
+                        <!-- Example buttons inside the first message -->
+                        <div id="example-buttons" class="example-buttons">
+                          <!-- Example buttons will be dynamically generated here -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Input Area -->
+                <div class="gemini-input-container">
+                  <textarea id="gemini-input" placeholder="Escribe tu mensaje aquí..." rows="1"></textarea>
+                  <button id="gemini-submit">
+                    <i class="fas fa-paper-plane"></i>
+                  </button>
+                </div>
+                
+                <!-- Response area is now integrated into the chat -->
+                <div id="gemini-response" class="gemini-response">
+                  <!-- AI responses will appear in the chat-messages area -->
+                </div>
+              </section>
+
+              <main class="calculator-content">
+                <!-- Project Type Selector -->
+                <section class="card project-type-card wel_item">
+                  <h2 class="card-title">Tipo de Proyecto</h2>
+                  <div class="project-types">
+                    <div class="project-type-item" data-type="website" data-base-hours="30" data-base-cost="1500">
+                      <div class="project-icon"><i class="fas fa-globe"></i></div>
+                      <div class="project-info">
+                        <h3>Sitio Web</h3>
+                        <p>Informativo o corporativo</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="ecommerce" data-base-hours="80" data-base-cost="4000">
+                      <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+                      <div class="project-info">
+                        <h3>E-commerce</h3>
+                        <p>Tienda online completa</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="webapp" data-base-hours="100" data-base-cost="5000">
+                      <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
+                      <div class="project-info">
+                        <h3>Aplicación Web</h3>
+                        <p>Con autenticación y base de datos</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="dashboard" data-base-hours="60" data-base-cost="3000">
+                      <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                      <div class="project-info">
+                        <h3>Dashboard</h3>
+                        <p>Visualización de datos</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="mobile" data-base-hours="120" data-base-cost="6000">
+                      <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+                      <div class="project-info">
+                        <h3>App Móvil</h3>
+                        <p>Híbrida (iOS/Android)</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="iot" data-base-hours="80" data-base-cost="4500">
+                      <div class="project-icon"><i class="fas fa-microchip"></i></div>
+                      <div class="project-info">
+                        <h3>IoT</h3>
+                        <p>Dispositivos conectados</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="ai" data-base-hours="100" data-base-cost="6000">
+                      <div class="project-icon"><i class="fas fa-brain"></i></div>
+                      <div class="project-info">
+                        <h3>Inteligencia Artificial</h3>
+                        <p>Modelos y aplicaciones IA</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="monorepo" data-base-hours="70" data-base-cost="3500">
+                      <div class="project-icon"><i class="fas fa-code-branch"></i></div>
+                      <div class="project-info">
+                        <h3>Monorepo</h3>
+                        <p>Gestión de proyectos Node.js</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="api" data-base-hours="40" data-base-cost="2000">
+                      <div class="project-icon"><i class="fas fa-plug"></i></div>
+                      <div class="project-info">
+                        <h3>API/Integración</h3>
+                        <p>Conexión entre sistemas</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="firmware" data-base-hours="90" data-base-cost="4800">
+                      <div class="project-icon"><i class="fas fa-microchip"></i></div>
+                      <div class="project-info">
+                        <h3>Firmware</h3>
+                        <p>Programación de dispositivos</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="cli" data-base-hours="50" data-base-cost="2500">
+                      <div class="project-icon"><i class="fas fa-terminal"></i></div>
+                      <div class="project-info">
+                        <h3>Herramienta CLI</h3>
+                        <p>Aplicación de línea de comandos</p>
+                      </div>
+                    </div>
+                    <div class="project-type-item" data-type="custom" data-base-hours="100" data-base-cost="5000">
+                      <div class="project-icon"><i class="fas fa-lightbulb"></i></div>
+                      <div class="project-info">
+                        <h3>Custom</h3>
+                        <p>Proyecto personalizado</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Project Parameters -->
+                <section class="card parameters-card wel_item">
+                  <h2 class="card-title">Parámetros del Proyecto</h2>
+                  
+                  <!-- Complexity Input -->
+                  <div class="parameter-group">
+                    <label for="complexity">Complejidad (1-5)</label>
+                    <div class="input-with-controls">
+                      <button class="control-btn decrease-btn"><i class="fas fa-minus"></i></button>
+                      <input type="number" id="complexity" min="1" max="5" value="3" class="parameter-input">
+                      <button class="control-btn increase-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                  </div>
+
+                  <!-- Stack Tecnológico -->
+                  <div class="parameter-group">
+                    <label for="tech-stack">Stack Tecnológico</label>
+                    <select id="tech-stack" class="parameter-select">
+                      <option value="react">React</option>
+                      <option value="vue">Vue.js</option>
+                      <option value="angular">Angular</option>
+                      <option value="node">Node.js</option>
+                      <option value="python">Python</option>
+                      <option value="php">PHP</option>
+                      <option value="dotnet">.NET</option>
+                      <option value="flutter">Flutter</option>
+                      <option value="react-native">React Native</option>
+                      <option value="custom">Personalizado</option>
+                    </select>
+                  </div>
+
+                  <!-- Tipo de Base de Datos -->
+                  <div class="parameter-group">
+                    <label for="database-type">Tipo de Base de Datos</label>
+                    <select id="database-type" class="parameter-select">
+                      <option value="none">Ninguna</option>
+                      <option value="supabase">Supabase</option>
+                      <option value="mongodb">MongoDB</option>
+                      <option value="graph">Graph (Neo4j)</option>
+                      <option value="time-series">Time Series (InfluxDB)</option>
+                      <option value="custom">Personalizada</option>
+                    </select>
+                  </div>
+
+                  <!-- Tipo de Despliegue - REEMPLAZADO POR BOTONES -->
+                  <div class="parameter-group">
+                    <label>Tipo de Despliegue</label>
+                    <div class="hosting-plans-container">
+                      <p class="hosting-note">Selecciona un plan de hosting. No hay posibilidad de ampliar los límites, solo cambiar de plan.</p>
+                      
+                      <div class="hosting-plans">
+                        <div class="hosting-plan" data-plan="starter">
+                          <div class="plan-header">
+                            <h3>ObeStarter</h3>
+                            <div class="plan-badge">Básico</div>
+                          </div>
+                          <div class="plan-original-price">US$ 13.99</div>
+                          <div class="plan-discount-badge">AHORRA 64%</div>
+                          <div class="plan-price">
+                            <span class="price-value">US$ 4.99</span>
+                            <span class="price-period">/mes</span>
+                          </div>
+                          <div class="plan-term">Por contrato de 24 meses</div>
+                          <ul class="plan-features">
+                            <li><i class="fas fa-microchip"></i> 1 vCPU core</li>
+                            <li><i class="fas fa-memory"></i> 4 GB RAM</li>
+                            <li><i class="fas fa-hdd"></i> 50 GB NVMe SSD</li>
+                            <li><i class="fas fa-network-wired"></i> 4 TB Ancho de banda</li>
+                          </ul>
+                          <div class="plan-footer">
+                            <div class="plan-note">Renovación: US$ 8.99/mes por 2 años</div>
+                            <div class="plan-cancel">Cancela cuando quieras</div>
+                          </div>
+                        </div>
+                        
+                        <div class="hosting-plan" data-plan="pro">
+                          <div class="plan-header">
+                            <h3>ObePro</h3>
+                            <div class="plan-badge popular">Popular</div>
+                          </div>
+                          <div class="plan-original-price">US$ 17.99</div>
+                          <div class="plan-discount-badge">AHORRA 61%</div>
+                          <div class="plan-price">
+                            <span class="price-value">US$ 6.99</span>
+                            <span class="price-period">/mes</span>
+                          </div>
+                          <div class="plan-term">Por contrato de 24 meses</div>
+                          <ul class="plan-features">
+                            <li><i class="fas fa-microchip"></i> 2 vCPU cores</li>
+                            <li><i class="fas fa-memory"></i> 8 GB RAM</li>
+                            <li><i class="fas fa-hdd"></i> 100 GB NVMe SSD</li>
+                            <li><i class="fas fa-network-wired"></i> 8 TB Ancho de banda</li>
+                          </ul>
+                          <div class="plan-footer">
+                            <div class="plan-note">Renovación: US$ 10.99/mes por 2 años</div>
+                            <div class="plan-cancel">Cancela cuando quieras</div>
+                          </div>
+                        </div>
+                        
+                        <div class="hosting-plan" data-plan="business">
+                          <div class="plan-header">
+                            <h3>ObeBusiness</h3>
+                            <div class="plan-badge recommended">Recomendado</div>
+                          </div>
+                          <div class="plan-original-price">US$ 29.99</div>
+                          <div class="plan-discount-badge">AHORRA 67%</div>
+                          <div class="plan-price">
+                            <span class="price-value">US$ 9.99</span>
+                            <span class="price-period">/mes</span>
+                          </div>
+                          <div class="plan-term">Por contrato de 24 meses</div>
+                          <ul class="plan-features">
+                            <li><i class="fas fa-microchip"></i> 4 vCPU cores</li>
+                            <li><i class="fas fa-memory"></i> 16 GB RAM</li>
+                            <li><i class="fas fa-hdd"></i> 200 GB NVMe SSD</li>
+                            <li><i class="fas fa-network-wired"></i> 16 TB Ancho de banda</li>
+                          </ul>
+                          <div class="plan-footer">
+                            <div class="plan-note">Renovación: US$ 22.99/mes por 2 años</div>
+                            <div class="plan-cancel">Cancela cuando quieras</div>
+                          </div>
+                        </div>
+                        
+                        <div class="hosting-plan" data-plan="enterprise">
+                          <div class="plan-header">
+                            <h3>ObeEnterprise</h3>
+                            <div class="plan-badge">Premium</div>
+                          </div>
+                          <div class="plan-original-price">US$ 59.99</div>
+                          <div class="plan-discount-badge">AHORRA 67%</div>
+                          <div class="plan-price">
+                            <span class="price-value">US$ 19.99</span>
+                            <span class="price-period">/mes</span>
+                          </div>
+                          <div class="plan-term">Por contrato de 24 meses</div>
+                          <ul class="plan-features">
+                            <li><i class="fas fa-microchip"></i> 8 vCPU cores</li>
+                            <li><i class="fas fa-memory"></i> 32 GB RAM</li>
+                            <li><i class="fas fa-hdd"></i> 400 GB NVMe SSD</li>
+                            <li><i class="fas fa-network-wired"></i> 32 TB Ancho de banda</li>
+                          </ul>
+                          <div class="plan-footer">
+                            <div class="plan-note">Renovación: US$ 45.99/mes por 2 años</div>
+                            <div class="plan-cancel">Cancela cuando quieras</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Hidden input to store the selected plan -->
+                      <input type="hidden" id="deployment-type" value="starter">
+                    </div>
+                  </div>
+
+                  <!-- Budget Input -->
+                  <div class="parameter-group">
+                    <label for="budget">Presupuesto ($)</label>
+                    <div class="input-with-controls">
+                      <span class="currency-symbol">$</span>
+                      <input type="number" id="budget" min="500" step="500" value="3000" class="parameter-input">
+                    </div>
+                  </div>
+
+                  <!-- Urgency Toggle -->
+                  <div class="parameter-group toggle-group">
+                    <label>Entrega Urgente</label>
+                    <label class="switch">
+                      <input type="checkbox" id="urgency-toggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </section>
+
+                <!-- Features Selection -->
+                <section class="card features-card wel_item">
+                  <h2 class="card-title">Características Adicionales</h2>
+                  <div class="features-list">
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-responsive" class="feature-checkbox">
+                      <label for="feature-responsive">Diseño Responsive</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-cms" class="feature-checkbox">
+                      <label for="feature-cms">CMS / Panel Admin</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-seo" class="feature-checkbox">
+                      <label for="feature-seo">Optimización SEO</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-analytics" class="feature-checkbox">
+                      <label for="feature-analytics">Analytics / Reportes</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-multilingual" class="feature-checkbox">
+                      <label for="feature-multilingual">Multilenguaje</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-api" class="feature-checkbox">
+                      <label for="feature-api">Integración API</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-payment" class="feature-checkbox">
+                      <label for="feature-payment">Pasarela de Pagos</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-auth" class="feature-checkbox">
+                      <label for="feature-auth">Autenticación / Usuarios</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-realtime" class="feature-checkbox">
+                      <label for="feature-realtime">Datos en Tiempo Real</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-offline" class="feature-checkbox">
+                      <label for="feature-offline">Modo Offline</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-pwa" class="feature-checkbox">
+                      <label for="feature-pwa">PWA (Progressive Web App)</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-notifications" class="feature-checkbox">
+                      <label for="feature-notifications">Notificaciones Push</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-social" class="feature-checkbox">
+                      <label for="feature-social">Integración Redes Sociales</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-maps" class="feature-checkbox">
+                      <label for="feature-maps">Mapas / Geolocalización</label>
+                    </div>
+                    <div class="feature-item">
+                      <input type="checkbox" id="feature-chat" class="feature-checkbox">
+                      <label for="feature-chat">Chat / Mensajería</label>
+                    </div>
+                    <!-- AI Suggested Features - Serán generadas dinámicamente -->
+                    <div id="ai-suggested-features" class="ai-suggested-features">
+                      <!-- Las características sugeridas por IA se generarán aquí -->
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Results Card -->
+                <section class="card results-card wel_item">
+                  <div class="results-header">
+                    <h2 class="card-title">Resultados</h2>
+                    <div class="project-badge">
+                      <i class="fas fa-laptop-code"></i>
+                      <span id="project-type-display">Aplicación Web</span>
+                    </div>
+                  </div>
+
+                  <div class="results-content">
+                    <div class="result-item">
+                      <div class="result-icon"><i class="fas fa-clock"></i></div>
+                      <div class="result-info">
+                        <h3>Tiempo Estimado</h3>
+                        <p id="time-result">4-6 semanas</p>
+                      </div>
+                    </div>
+                    
+                    <div class="result-item">
+                      <div class="result-icon"><i class="fas fa-user-tie"></i></div>
+                      <div class="result-info">
+                        <h3>Desarrollador Asignado</h3>
+                        <p id="team-result">Obed González</p>
+                      </div>
+                    </div>
+                    
+                    <div class="result-item">
+                      <div class="result-icon"><i class="fas fa-dollar-sign"></i></div>
+                      <div class="result-info">
+                        <h3>Costo Estimado</h3>
+                        <p id="cost-result">$5,000 - $7,000</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Project Summary Section -->
+                  <div class="project-summary">
+                    <h3 class="summary-title"><i class="fas fa-clipboard-list"></i> Resumen del Proyecto</h3>
+                    
+                    <div class="summary-grid">
+                      <div class="summary-item">
+                        <div class="summary-label">Tipo de Proyecto:</div>
+                        <div class="summary-value" id="summary-project-type">Aplicación Web</div>
+                      </div>
+                      <div class="summary-item">
+                        <div class="summary-label">Complejidad:</div>
+                        <div class="summary-value" id="summary-complexity">3/5</div>
+                      </div>
+                      <div class="summary-item">
+                        <div class="summary-label">Stack Tecnológico:</div>
+                        <div class="summary-value" id="summary-tech-stack">React</div>
+                      </div>
+                      <div class="summary-item">
+                        <div class="summary-label">Base de Datos:</div>
+                        <div class="summary-value" id="summary-database">MongoDB</div>
+                      </div>
+                      <div class="summary-item">
+                        <div class="summary-label">Plan de Hosting:</div>
+                        <div class="summary-value" id="summary-deployment">ObePro</div>
+                      </div>
+                      <div class="summary-item">
+                        <div class="summary-label">Entrega Urgente:</div>
+                        <div class="summary-value" id="summary-urgency">No</div>
+                      </div>
+                    </div>
+
+                    <!-- Features Summary -->
+                    <div class="features-summary">
+                      <h4>Características Seleccionadas:</h4>
+                      <div class="selected-features" id="summary-features">
+                        <!-- Features will be populated by JavaScript -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Hosting Benefits Section -->
+                  <div class="hosting-benefits">
+                    <h3 class="benefits-title"><i class="fas fa-server"></i> Beneficios Incluidos en su Plan</h3>
+                    
+                    <div class="benefits-tabs">
+                      <button class="benefit-tab active" data-tab="infrastructure">Infraestructura</button>
+                      <button class="benefit-tab" data-tab="features">Funciones Avanzadas</button>
+                      <button class="benefit-tab" data-tab="support">Soporte</button>
+                    </div>
+                    
+                    <div class="benefits-content active" id="infrastructure-content">
+                      <div class="benefit-item">
+                        <i class="fas fa-globe"></i>
+                        <div class="benefit-info">
+                          <h4>Data centers worldwide</h4>
+                          <p>Elija la ubicación más cercana a su audiencia para minimizar la latencia.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fab fa-linux"></i>
+                        <div class="benefit-info">
+                          <h4>Linux OS preinstalado</h4>
+                          <p>Soporte para las distribuciones más populares, configurado y listo para usar.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-network-wired"></i>
+                        <div class="benefit-info">
+                          <h4>Infraestructura de Alto Rendimiento</h4>
+                          <p>Servidores HPE y DELL con procesadores AMD EPYC y conexión de 300 Mb/s.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="benefits-content" id="features-content">
+                      <div class="benefit-item">
+                        <i class="fas fa-camera"></i>
+                        <div class="benefit-info">
+                          <h4>Instant real‑time snapshots</h4>
+                          <p>Capture el estado de su servidor en cualquier momento y recupérelo al instante.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-database"></i>
+                        <div class="benefit-info">
+                          <h4>Backups automáticos semanales</h4>
+                          <p>Copias de seguridad gestionadas por Hostinger, para restaurar en minutos ante cualquier imprevisto.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-robot"></i>
+                        <div class="benefit-info">
+                          <h4>AI Assistant "Kodee"</h4>
+                          <p>Asesor virtual disponible 24/7 para ayudarle con configuraciones, comandos y buenas prácticas.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-terminal"></i>
+                        <div class="benefit-info">
+                          <h4>Browser terminal</h4>
+                          <p>Administre archivos y ejecute comandos directamente desde el navegador, sin necesidad de clientes externos.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <div class="benefit-info">
+                          <h4>Escalabilidad en un clic</h4>
+                          <p>Si su proyecto crece, aumente CPU, RAM o almacenamiento con solo unos clics desde el panel.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="benefit-info">
+                          <h4>Firewall y DDoS protection</h4>
+                          <p>Seguridad avanzada con filtrado de tráfico y reglas personalizables para mantener su servidor a salvo.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-code"></i>
+                        <div class="benefit-info">
+                          <h4>API pública VPS</h4>
+                          <p>Automatice tareas de backup, despliegue o monitorización mediante la API REST de Hostinger.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="benefits-content" id="support-content">
+                      <div class="benefit-item">
+                        <i class="fas fa-headset"></i>
+                        <div class="benefit-info">
+                          <h4>Soporte 24/7</h4>
+                          <p>Equipo de expertos disponible en todo momento para resolver cualquier incidencia.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-undo"></i>
+                        <div class="benefit-info">
+                          <h4>Garantía de satisfacción</h4>
+                          <p>30 días de reembolso si no está completamente satisfecho con nuestro servicio.</p>
+                        </div>
+                      </div>
+                      <div class="benefit-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="benefit-info">
+                          <h4>Recursos de aprendizaje</h4>
+                          <p>Acceso a tutoriales, guías y documentación para sacar el máximo provecho a su servidor.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="action-buttons">
+                    <button id="generate-quote-pdf" class="action-button primary">
+                      <i class="fas fa-file-pdf"></i>
+                      <span>Descargar Pre-Cotización</span>
+                    </button>
+                    <button id="send-to-whatsapp" class="action-button secondary">
+                      <i class="fab fa-whatsapp"></i>
+                      <span>Recibir por WhatsApp</span>
+                    </button>
+                  </div>
+
+                  <!-- Admin Buttons (Hidden) -->
+                  <div class="admin-buttons">
+                    <!-- Botón eliminado -->
+                  </div>
+                </section>
+
+                <!-- WhatsApp Modal -->
+                <div id="whatsapp-modal" class="modal">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h3><i class="fab fa-whatsapp"></i> Recibir Cotización por WhatsApp</h3>
+                      <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                      <p>Ingrese su número de teléfono para recibir la cotización y seguimiento de su proyecto por WhatsApp:</p>
+                      
+                      <div class="phone-input-container">
+                        <div class="country-code">+507</div>
+                        <input type="tel" id="phone-number" placeholder="6123-4567" maxlength="9" pattern="[0-9]{4}-?[0-9]{4}">
+                      </div>
+                      
+                      <div class="consent-checkbox">
+                        <input type="checkbox" id="consent-checkbox">
+                        <label for="consent-checkbox">Acepto recibir información sobre mi proyecto y promociones de ObeDev.</label>
+                      </div>
+                      
+                      <div class="modal-error" id="modal-error"></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button id="cancel-whatsapp" class="modal-button secondary">Cancelar</button>
+                      <button id="send-whatsapp" class="modal-button primary">
+                        <i class="fab fa-whatsapp"></i> Enviar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer__StyledFooter-sc-4jwnt4-0 earxGk">
+    <div class="footer__StyledSocialLinks-sc-4jwnt4-1 iKeBGp">
+      <ul>
+        <li>
+          <a href="https://github.com/bchiang7" aria-label="GitHub" rel="noopener noreferrer" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
+              <title>GitHub</title>
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/bchiang7" aria-label="Instagram" rel="noopener noreferrer" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+              <title>Instagram</title>
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/bchiang7" aria-label="Twitter" rel="noopener noreferrer" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter">
+              <title>Twitter</title>
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/bchiang7" aria-label="Linkedin" rel="noopener noreferrer" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin">
+              <title>LinkedIn</title>
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://codepen.io/bchiang7" aria-label="Codepen" rel="noopener noreferrer" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-codepen">
+              <title>CodePen</title>
+              <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+              <line x1="12" y1="22" x2="12" y2="15.5"></line>
+              <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
+              <polyline points="2 15.5 12 8.5 22 15.5"></polyline>
+              <line x1="12" y1="2" x2="12" y2="8.5"></line>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__StyledCredit-sc-4jwnt4-2 fLSMpu">
+      <a href="https://discordapp.com/users/741818073765511169" rel="noopener noreferrer" target="_blank">
+        <div class="txt-footer-style">Designed by Obed with ❤</div>
+      </a>
+    </div>
+  </footer>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- jQuery CDN Link -->
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+  <!-- ObeDev Scripts -->
+  <script src="assets/js/my.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      startEvent: "DOMContentLoaded",
+      offset: 100,
+    });
+    
+    AOS.init({
+      disable: function () {
+        var maxWidth = 800;
+        return window.innerWidth < maxWidth;
+      },
+    });
+  </script>
+
+  <!-- Calculator Scripts -->
+  <script src="assets/js/calculator.js"></script>
+  <script src="assets/js/gemini-assistant.js"></script>
+  <script src="assets/js/pdf-generator.js"></script>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuIcon = document.querySelector("#menu-icon");
+      const navbar = document.querySelector(".navbar");
+
+      menuIcon.addEventListener("click", () => {
+        menuIcon.classList.toggle("bx-x");
+        navbar.classList.toggle("active");
+      });
+    </script>
+  </body>
+  <script src="assets/js/results-handler.js"></script>
+</html>
