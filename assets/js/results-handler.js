@@ -95,7 +95,6 @@ async function generateQuotePDF() {
   const projectName = document.getElementById("project-name").value
   const projectDescription = document.getElementById("project-description").value
   const projectTimeline = document.getElementById("project-timeline").value
-  const projectBudget = document.getElementById("project-budget").value
   const techResult = document.getElementById("tech-result").textContent
 
   // Crear el contenido del PDF
@@ -117,10 +116,6 @@ async function generateQuotePDF() {
         <div style="background-color: #f5f5f7; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
           <h2 style="color: #714cdf; margin-top: 0; margin-bottom: 15px;">Tiempo Estimado</h2>
           <p style="margin: 5px 0;">${projectTimeline}</p>
-        </div>
-        <div style="background-color: #f5f5f7; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
-          <h2 style="color: #714cdf; margin-top: 0; margin-bottom: 15px;">Presupuesto Estimado</h2>
-          <p style="margin: 5px 0;">${projectBudget}</p>
         </div>
         <div style="background-color: #f5f5f7; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
           <h2 style="color: #714cdf; margin-top: 0; margin-bottom: 15px;">Tecnología Principal</h2>

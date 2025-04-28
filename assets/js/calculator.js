@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const techStackSelect = document.getElementById("tech-stack")
   const databaseTypeSelect = document.getElementById("database-type")
   const deploymentTypeInput = document.getElementById("deployment-type")
-  const budgetInput = document.getElementById("budget")
   const urgencyToggle = document.getElementById("urgency-toggle")
   const featureCheckboxes = document.querySelectorAll(".feature-checkbox")
 
@@ -102,10 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (localStorage.getItem("databaseType")) {
     databaseTypeSelect.value = localStorage.getItem("databaseType")
-  }
-
-  if (localStorage.getItem("budget")) {
-    budgetInput.value = localStorage.getItem("budget")
   }
 
   if (localStorage.getItem("urgency") === "true") {
@@ -134,11 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   databaseTypeSelect.addEventListener("change", function () {
     localStorage.setItem("databaseType", this.value)
-    calculateEstimates()
-  })
-
-  budgetInput.addEventListener("change", function () {
-    localStorage.setItem("budget", this.value)
     calculateEstimates()
   })
 
@@ -206,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Reducir los costos base a aproximadamente la mitad
     const baseHours = Number.parseInt(selectedProject.dataset.baseHours)
-    const baseCost = Number.parseInt(selectedProject.dataset.baseCost) * 0.5 // Reducir a la mitad
+    const baseCost = Number.parseInt(selectedProject.dataset.baseCost) * 0.4 // Reducir a 40% (mitad menos 20% adicional)
     const complexity = Number.parseInt(complexityInput.value)
     const techStack = techStackSelect.value
     const databaseType = databaseTypeSelect.value

@@ -7,6 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetChatBtn = document.getElementById("reset-chat")
   const aiSuggestedFeatures = document.getElementById("ai-suggested-features")
 
+  // Configurar un MutationObserver para detectar cambios en el chat y hacer scroll
+  const chatMessagesElement = document.getElementById("chat-messages")
+  if (chatMessagesElement) {
+    const chatObserver = new MutationObserver(() => {
+      scrollToBottom()
+    })
+
+    chatObserver.observe(chatMessagesElement, {
+      childList: true,
+      subtree: true,
+    })
+  }
+
   // Gemini API Key
   const GEMINI_API_KEY = "AIzaSyBVL4SvQpF9x3E5FcR3W8eOnEAQZABa-co"
 
@@ -102,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add user message to chat
     addMessageToChat(userPrompt, "user")
+    scrollToBottom()
 
     // Add to conversation history
     conversationHistory.push({ role: "user", content: userPrompt })
@@ -146,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Lo siento, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo.",
           "bot",
         )
+        scrollToBottom()
       })
   }
 
@@ -166,12 +181,39 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollToBottom()
   }
 
-  // Modificar la función scrollToBottom para asegurar que funcione correctamente
+  // Modificar la función scrollToBottom para que solo haga scroll dentro del contenedor de chat
   function scrollToBottom() {
-    // Asegurarse de que el scroll baje completamente
+    // Método 1: Usar setTimeout con un valor alto para asegurar que el DOM se ha actualizado
     setTimeout(() => {
-      chatMessages.scrollTop = chatMessages.scrollHeight + 1000
+      const chatContainer = document.querySelector(".chat-container")
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight
+      }
     }, 100)
+
+    // Método 2: Usar requestAnimationFrame para sincronizar con el ciclo de renderizado
+    requestAnimationFrame(() => {
+      const chatContainer = document.querySelector(".chat-container")
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight
+      }
+    })
+
+    // Método 3: Usar scrollIntoView en el último mensaje pero sin afectar el scroll de la página
+    setTimeout(() => {
+      const messages = document.querySelectorAll(".message")
+      if (messages.length > 0) {
+        const lastMessage = messages[messages.length - 1]
+        // Usar scrollIntoView con behavior: "auto" y block: "end" para evitar scroll de página
+        lastMessage.scrollIntoView({ behavior: "auto", block: "end", scrollMode: "if-needed" })
+
+        // Restaurar la posición de scroll de la página si se movió
+        const chatContainer = document.querySelector(".chat-container")
+        if (chatContainer) {
+          chatContainer.scrollTop = chatContainer.scrollHeight
+        }
+      }
+    }, 150)
   }
 
   // Asegurarse de que se llame a scrollToBottom después de añadir mensajes
